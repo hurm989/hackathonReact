@@ -9,8 +9,8 @@ export default function AppRouter() {
   return (
     <Router>
       <Routes>
-        <Route path="/*" element={<MyScreen />} />
         <Route path="/login" element={<LogIn />} />
+        <Route path="/*" element={<MyScreen />} />
       </Routes>
     </Router>
   );

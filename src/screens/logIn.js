@@ -10,6 +10,7 @@ import Button from '@mui/material/Button';
 import { useNavigate } from "react-router";
 import { useDispatch } from "react-redux";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+// import { FaUserCheck } from "react-icons/fa";
 export default function LogIn() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -17,8 +18,8 @@ export default function LogIn() {
     const [email, setEmail] = useState("")
     const [password, setPassowrd] = useState("")
     let login = () => {
-        if (userName == "") {
-            alert("Enter Your Name")
+        if (email == "") {
+            alert("Enter Your Email")
             return
         }
         if (password == "" || password.length < 6) {
@@ -26,22 +27,23 @@ export default function LogIn() {
             return
         }
         let obj = {
-            userName, password,email
+            userName, password, email
         }
         // console.log(obj)
-        dispatch({
-            type: "DATAFROMLOGIN",
-            payload: obj,
-          });
+        // dispatch({
+        //     type: "DATAFROMLOGIN",
+        //     payload: obj,
+        // });
         navigate("/")
     }
     return <>
-        <Box sx={{ backgroundImage: `url()`, backgroundRepeat: "no-repeat" }} >
+        <Box sx={{ backgroundImage: `url()` ,backgroundColor:"cornflowerblue",backgroundPosition:"fixed",backgroundRepeat:"no-repeat"}} >
             <Grid item xs={12} sm={12} lg={4} md={4} xl={4} height={"100vh"} minHeight={"100vh"} className="d-flex justify-content-center align-items-center">
                 <Box>
-                    <Container sx={{ width: 400 }}>
-                        <Box>
-                            <Typography className="text-center fw-bold fs-4" variant="h6" >WELCOME BACK</Typography>
+                    <Container sx={{ width:400,backgroundColor:"white", paddingY:3,borderRadius:1, boxShadow: '1px 2px 3px #000000'}}>
+                        <Box display={"flex"} flexDirection={"column"} justifyContent={"center"} alignItems={"center"}>
+                            {/* <FaUserCheck style={{marginTop:10}} size={40} /> */}
+                            <Typography className="text-center fw-bold" letterSpacing={5} fontSize={27} fontWeight={"bold"} >ADMIN LOGIN</Typography>
                         </Box>
                         <Box sx={{ marginTop: 4 }}>
                             <Input onChange={(e) => setUserName(e.target.value)} fullWidth={true}
@@ -77,7 +79,7 @@ export default function LogIn() {
                             />
                         </Box>
                         <Box sx={{ marginTop: 2 }}>
-                            <Button onClick={login} className="fw-bold" variant="contained" sx={{ letterSpacing: 3 }} fullWidth={true} color="primary">
+                            <Button onClick={login} className="fw-bold" variant="contained" sx={{ letterSpacing: 3, fontSize: 16 }} fullWidth={true} color="primary">
                                 LOG IN
                             </Button>
                         </Box>

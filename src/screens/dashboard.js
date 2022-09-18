@@ -17,15 +17,13 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
 import { Route, Routes, useNavigate } from "react-router-dom";
-import Form from "./dashboardScreens/users";
-import ShowHotels from "./dashboardScreens/showHotel";
+import Form from "./dashboardScreens/details";
+import Users from "./dashboardScreens/users";
+import AllHotels from "./dashboardScreens/allhotels";
+import Packages from "./dashboardScreens/pakgs";
 import { useEffect } from "react";
 import { useSelector } from "react-redux/es/exports";
-// import { useNavigate } from "react-router-dom";
-// import Meeting from "./dashboardScreens/meetings";
-// import Notes from "./dashboardScreens/notes";
 const drawerWidth = 240;
 
 const openedMixin = (theme) => ({
@@ -95,42 +93,48 @@ const Drawer = styled(MuiDrawer, {
 
 export default function MyScreen() {
 
-  const userFromRedux = useSelector((a) => a.user);
-  console.log(userFromRedux)
-  localStorage.setItem('users', JSON.stringify(userFromRedux));
-  useEffect(() => {
-    // if (userFromRedux || localStorage.getItem("users")) {
-    //   // console.log(t)
-    //   let newObject = window.localStorage.getItem("users");
-    //   console.log(JSON.parse(newObject));
-    // console.log(localStorage.getItem(("users")))
-    // console.log(userFromRedux)
+  // const userFromRedux = useSelector((a) => a.user);
+  // console.log(userFromRedux)
+  // localStorage.setItem('users', JSON.stringify(userFromRedux));
+  // useEffect(() => {
+  // if (userFromRedux || localStorage.getItem("users")) {
+  //   // console.log(t)
+  //   let newObject = window.localStorage.getItem("users");
+  //   console.log(JSON.parse(newObject));
+  // console.log(localStorage.getItem(("users")))
+  // console.log(userFromRedux)
 
-    ///localstrogae b null horhe h reload py how to handle this
-    if (userFromRedux) {
-    }
-    else {
-      alert("Session Expired")
-      navigate("/login");
-      return
-      // console.log("no data")
-    }
-  }, []);
+  ///localstrogae b null horhe h reload py how to handle this
+  //   if (userFromRedux) {
+  //   }
+  //   else {
+  //     alert("Session Expired")
+  //     navigate("/login");
+  //     return
+  //     // console.log("no data")
+  //   }
+  // }, []);
   const theme = useTheme();
-  const [open, setOpen] = React.useState(true);
+  const [open, setOpen] = React.useState(false);
   const [routeList, setRouteList] = React.useState([
-    {
-      routeName: "ShowHotels",
-      route: "hotels",
-    },
     {
       routeName: "Add Hotel",
       route: "forms",
     },
     {
-      routeName: "ShowMeeting",
-      route: "meetinng",
+      routeName: "Packages",
+      route: "packages",
     },
+    {
+      routeName: "Users",
+      route: "users",
+    },
+    {
+      routeName: "Show Hotels",
+      route: "allhotels",
+    },
+   
+    
   ]);
 
   const handleDrawerOpen = () => {
@@ -164,19 +168,26 @@ export default function MyScreen() {
           >
             <MenuIcon />
           </IconButton>
-          <Box display={"flex"}>
-            <Box sx={{ marginRight: 3 }}>
-              <Typography variant="h6" noWrap component="div">
+
+
+          <Box width={"100%"} display={"flex"}  justifyContent={"space-between"} >
+            <Box sx={{ marginRight: 3 }} display={"flex"} alignItems={"center"}>
+              <Typography variant="p" style={{fontWeight:"bold",fontSize:22,marginRight:9}}  noWrap component="div">
                 WELCOME
               </Typography>
-            </Box>
-            <Box>
               <Typography variant="h6" noWrap component="div">
-                {/* {userFromRedux.email} */}
-                HURMAT
-              </Typography>
+                  HURMAT
+                </Typography>
             </Box>
-
+            
+            <Box display={"flex"} justifyContent={"space-between"}>
+             
+              <Box>
+                <button style={{ backgroundColor: "transparent", borderRadius: 2, border: "none", marginTop: 5 ,fontWeight:"bold"}}>
+                  SIGN OUT
+                </button>
+              </Box>
+            </Box>
           </Box>
         </Toolbar>
 
@@ -231,9 +242,10 @@ export default function MyScreen() {
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />
         <Routes>
-          <Route path="hotels" element={<ShowHotels />} />
+          <Route path="users" element={<Users />} />
           <Route path="forms" element={<Form />} />
-          {/* <Route path="meetings" element={<Meeting />} /> */}
+          <Route path="allhotels" element={<AllHotels />} />
+          <Route path="packages" element={<Packages />} />
         </Routes>
       </Box>
     </Box>
